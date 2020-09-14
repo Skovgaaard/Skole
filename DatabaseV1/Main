@@ -1,0 +1,23 @@
+#include <mysql.h>
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+int main()
+{
+	int qstate;
+	MYSQL* conn;
+	MYSQL_ROW row;
+	MYSQL_RES* res = nullptr;
+	conn = mysql_init(0);
+
+	conn = mysql_real_connect(conn, "localhost", "root", "realmlist112", "workshop", 3306, NULL, 0);
+	
+
+	readBil(conn, qstate, row, res);
+	insertBil(conn, qstate);
+	readBil(conn, qstate, row, res);
+
+	return 0;
+}
