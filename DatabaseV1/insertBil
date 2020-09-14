@@ -1,0 +1,28 @@
+void insertBil(MYSQL* conn, int& qstate) {
+	if (conn) {
+		puts("Successful connection to database!");
+
+		string bilId, lPlate, model, year, kundeID;
+		cout << "enter bilId: " << endl; cin >> bilId;
+		cout << "enter license plate: " << endl; cin >> lPlate;
+		cout << "enter model: " << endl; cin >> model;
+		cout << "enter year: " << endl; cin >> year;
+		cout << "enter kundeID: " << endl; cin >> kundeID;
+
+		string query = "insert into bil values(" + bilId + ",'" + lPlate + "','" + model + "'," + year + "," + kundeID + ")";
+
+
+		const char* q = query.c_str();
+
+		cout << "query is: " << q << endl;
+
+		qstate = mysql_query(conn, q);
+
+		if (!qstate) {
+			cout << "record inserted succesfulle" << endl;
+		}
+		else {
+			cout << "query problem: " << mysql_error(conn) << endl;
+		}
+	}
+}
