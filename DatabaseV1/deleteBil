@@ -1,0 +1,19 @@
+	void deleteBil(MYSQL* conn, int& qstate, int bil_id) {
+		if (conn)
+		{
+			cout << "Succesful connection to database!" << endl;
+
+			string query = "delete from bil where bil_id =" + std::to_string(bil_id);
+
+			cout << query << endl;
+
+			const char* q = query.c_str();
+			qstate = mysql_query(conn, q);
+			if (!qstate)
+			{
+				cout << "Succesfully deleted bil" << endl;
+			}
+		}
+		else
+			cout << "Connection to database has failed" << endl;
+	}
